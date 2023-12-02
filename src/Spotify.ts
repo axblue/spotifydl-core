@@ -154,12 +154,13 @@ export default class SpotifyFetcher extends SpotifyApi {
      */
     getTracksFromPlaylist = async (
         url: string
-    ): Promise<{ name: string; total_tracks: number; tracks: SongDetails[] }> => {
+    ): Promise<{ name: string; cover_url: any; total_tracks: number; tracks: SongDetails[] }> => {
         await this.verifyCredentials()
         const playlist = await this.getPlaylist(url)
         const tracks = await Promise.all(playlist.tracks.map((track) => this.getTrack(track)))
         return {
             name: playlist.name,
+            cover_url: playlist.cover_url,
             total_tracks: playlist.total_tracks,
             tracks
         }

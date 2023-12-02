@@ -57,6 +57,7 @@ export default class SpotifyApi {
         const data = (await this.spotifyAPI.getPlaylist(playlistId)).body
         const details = new Playlist(
             '',
+            data.images[0],
             0,
             data.tracks.items.map((item) => item.track!.id)
         )
@@ -80,6 +81,7 @@ export default class SpotifyApi {
         const data = (await this.spotifyAPI.getAlbum(albumId)).body
         const details = new Playlist(
             '',
+            data.images[0],
             0,
             data.tracks.items.map((item) => item.id)
         )
