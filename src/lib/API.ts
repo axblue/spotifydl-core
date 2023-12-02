@@ -42,6 +42,7 @@ export default class SpotifyApi {
     extractTrack = async (trackId: string): Promise<TrackDetails> => {
         const data = (await this.spotifyAPI.getTrack(trackId)).body
         const details = new TrackDetails()
+        details.id = data.id
         details.name = data.name
         data.artists.forEach((artist) => {
             details.artists.push(artist.name)
